@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
-import {FormControl, Button} from 'react-bootstrap'
+import {Grid, Col, FormControl, Button} from 'react-bootstrap'
+
 
 export default class SearchBar extends Component {
    render(){
       return(
         <div className="search-bar">
-					<FormControl
-						type="text"
-						placeholder='Search...'
-						onChange={this.handleInput}
-					/>
-					<Button bsStyle="primary">Search</Button>
-
+					<Grid>
+					<Col xs={12} md={8}>
+						<FormControl
+							type="text"
+							placeholder='Search...'
+							onChange={this.handleInput}
+						/>
+					</Col>
+					<Col xs={6} md={4}>
+						<Button bsStyle="primary" className="search-button">Search</Button>
+					</Col>
+					</Grid>
         </div>
       )
    }

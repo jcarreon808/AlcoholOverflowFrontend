@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Wine from './Wine'
+import SearchBar from './SearchBar'
 import {} from 'react-router-dom'
 
 export default class WineList extends Component {
@@ -9,6 +10,7 @@ export default class WineList extends Component {
 		})
       return(
         <div>
+					<SearchBar/>
 					{allWines}
         </div>
       )

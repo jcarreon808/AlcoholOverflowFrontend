@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import {Button, Well} from 'react-bootstrap'
+import React from 'react'
+import {Button, Panel, Jumbotron } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const SplashPage = () => {
 		return(
-				<Well>
-					<h1>Wine-Overflow</h1>
-					<h3>Feel the Flow</h3>
-					<Button>GO GIT IT</Button>
-				</Well>
+					<div className="splash-page">
+						<h1 className="splash-page-header">WineOverflow</h1>
+						<Link to="/winelist"><Button bsStyle="Success" bsSize="large">Winelist</Button></Link>
+					</div>
 		)
 }
 

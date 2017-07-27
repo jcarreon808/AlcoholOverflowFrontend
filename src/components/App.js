@@ -26,11 +26,13 @@ class App extends Component {
     return (
 			<Router>
 				<div className="App">
-					<SearchBar/>
-					<Route exact path="/" component={SplashPage} />
-					<Route path="/home" component={Homepage} />
-					<Route path="/winelist" render={ () => <WineList wines={this.state.wines} />
-					}/>
+					<div>
+						<Route exact path="/" component={SplashPage} />
+					</div>
+					<div className="main">
+						<Route path="/home" component={Homepage} />
+						<Route path="/winelist" render={ () => <WineList wines={this.state.wines} /> }/>
+					</div>
 				</div>
 			</Router>
     );
