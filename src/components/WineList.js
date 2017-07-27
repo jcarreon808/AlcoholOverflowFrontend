@@ -1,17 +1,31 @@
 import React, { Component } from 'react'
 import Wine from './Wine'
 import SearchBar from './SearchBar'
-import {} from 'react-router-dom'
+import { Grid } from 'semantic-ui-react'
 
 export default class WineList extends Component {
+
    render(){
-   	const allWines = this.props.wines.map( wine => {
-   		return( <Wine wineDetail={wine}/> )
-		})
+     let filteredWines = this.props.wines.filter(wine => {
+       const regex = new RegExp(this.props.searchTerm, 'gi')
+       for (let key in wine) {
+         if (wine[key] !== null && key !== 'reviews') {
+           if (typeof wine[key] == 'string' ) {
+             return !!wine[key].match(regex)
+           }
+         }
+       }
+     })
+
       return(
         <div>
-					<SearchBar/>
-					{allWines}
+					<SearchBar handleChange={this.props.handleChange} />
+          <br/>
+          <Grid columns={3} divided>
+            <Grid.Row>
+					    {filteredWines.map( wine => <Wine wineDetail={wine} handleCurrentWine={this.props.handleCurrentWine}/> )}
+            </Grid.Row>
+          </Grid>
         </div>
       )
    }

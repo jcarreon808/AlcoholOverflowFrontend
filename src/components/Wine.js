@@ -1,29 +1,34 @@
 import React from 'react'
-import {Grid, Well, Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import { Card, Icon, Image, Grid } from 'semantic-ui-react'
 
-const Wine = ({ wineDetail }) => {
+const Wine = ({ wineDetail, handleCurrentWine }) => {
 	return(
-			<Grid>
-				<Well>
-				<Row>
-					<Col md={6}>
-						<h2>{wineDetail.name}</h2>
-						<img src={`${wineDetail.image}`}/>
-					</Col>
-					<Col md={6} className="wine-col-detail">
-						<h6>Varietal: {wineDetail.varietal}</h6>
-						<h6>Rank: {wineDetail.rank}</h6>
-						<h6>Region: {wineDetail.region}</h6>
-						<h6>Winery: {wineDetail.winery}</h6>
-						<h6>Vintage: {wineDetail.vintage}</h6>
-						<h6>Type: {wineDetail.wine_type}</h6>
-						<h6>Price: {wineDetail.price}</h6>
-						<a href={wineDetail.link} target="_blank">More Info</a>
-					</Col>
-				</Row>
-				</Well>
-			</Grid>
+		<Grid.Column>
+			<Card key={wineDetail.id}>
+		    <Image src={`${wineDetail.image}`} />
+		    <Card.Content>
+		      <Card.Header>
+		        {wineDetail.name}
+		      </Card.Header>
+		      <Card.Meta>
+		        <span className='date'>
+		          Price: ${wineDetail.price}
+		        </span>
+		      </Card.Meta>
+		      <Card.Description>
+		        Varietal: {wineDetail.varietal}<br/>
+						Region: {wineDetail.region}<br/>
+						Winery: {wineDetail.winery}<br/>
+						Type: {wineDetail.wine_type}<br/>
+		      </Card.Description>
+		    </Card.Content>
+		    <Card.Content extra>
+					<Link to={`/winelist/${wineDetail.id}`} onClick={() => handleCurrentWine(wineDetail.id)}>See Reviews</Link><br/>
+					<a href={wineDetail.link} target="_blank">More Info</a>
+		    </Card.Content>
+		  </Card>
+		</Grid.Column>
 	)
 }
 

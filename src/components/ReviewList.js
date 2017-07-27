@@ -1,12 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Review from './Review'
 
-export default class ReviewList extends Component {
+const ReviewList = ({ currentWine }) => {
+  debugger
 
-	render(){
-      return(
-        <div>
-
-        </div>
-      )
-   }
+  return(
+    <div>
+      Hello
+    </div>
+  )
 }
+
+export default ReviewList
+
+// {currentWine.reviews.map(review => <Review review={review} /> )}

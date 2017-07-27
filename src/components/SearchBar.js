@@ -1,23 +1,12 @@
 import React, { Component } from 'react'
-import {Grid, Col, FormControl, Button} from 'react-bootstrap'
+import { Input } from 'semantic-ui-react'
 
 
 export default class SearchBar extends Component {
    render(){
       return(
         <div className="search-bar">
-					<Grid>
-					<Col xs={12} md={8}>
-						<FormControl
-							type="text"
-							placeholder='Search...'
-							onChange={this.handleInput}
-						/>
-					</Col>
-					<Col xs={6} md={4}>
-						<Button bsStyle="primary" className="search-button">Search</Button>
-					</Col>
-					</Grid>
+          <Input icon='search' placeholder='Search...' onChange={this.props.handleChange} />
         </div>
       )
    }
