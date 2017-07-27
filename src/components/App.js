@@ -48,7 +48,7 @@ class App extends Component {
 	)
 
   render() {
-		console.log(this.state.currentWine)
+		// console.log(this.state.currentWine)
     return (
 			<Router>
 				<div className="App">

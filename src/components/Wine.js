@@ -6,7 +6,7 @@ const Wine = ({ wineDetail, handleCurrentWine }) => {
 	return(
 		<Grid.Column>
 			<Card key={wineDetail.id}>
-		    <Image src={`${wineDetail.image}`} />
+		    <Image src={`${wineDetail.image}`} size='small' centered />
 		    <Card.Content>
 		      <Card.Header>
 		        {wineDetail.name}
