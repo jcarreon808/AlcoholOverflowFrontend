@@ -24,7 +24,7 @@ const Wine = ({ wineDetail, handleCurrentWine }) => {
 		      </Card.Description>
 		    </Card.Content>
 		    <Card.Content extra>
-					<Link to={`/winelist/${wineDetail.id}`} onClick={() => handleCurrentWine(wineDetail.id)}>See Reviews</Link><br/>
+					<Link to={`/winelist/${wineDetail.id}`}>See Reviews</Link><br/>
 					<a href={wineDetail.link} target="_blank">More Info</a>
 		    </Card.Content>
 		  </Card>

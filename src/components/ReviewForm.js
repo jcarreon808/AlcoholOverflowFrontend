@@ -8,7 +8,7 @@ const ReviewForm = (props) => {
                     control={Input}
                     label='Username'
                     placeholder='Username' />
-        <Form.Field id='form-textarea-control-opinion'
+        <Form.Field id='content'
                     control={TextArea}
                     label='Review'
                     placeholder='Review'

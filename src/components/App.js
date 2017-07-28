@@ -14,8 +14,7 @@ class App extends Component {
 
 		this.state = {
 			wines: [],
-			searchTerm: '',
-			currentWine: []
+			searchTerm: ''
 		}
 	}
 
@@ -41,12 +40,6 @@ class App extends Component {
 		this.setState({ searchTerm: event.target.value })
 	}
 
-	handleCurrentWine = (id) => (
-		fetch(`http://localhost:3000/api/v1/wines/${id}`)
-			.then(response => response.json())
-			.then(data => this.setState({ currentWine: data }))
-	)
-
   render() {
     return (
 			<Router>
@@ -59,13 +52,8 @@ class App extends Component {
 						<Route exact path="/winelist" render={ () =>
 							<WineList wines={this.state.wines}
 												searchTerm={this.state.searchTerm}
-												handleChange={this.handleSearchInput}
-												handleCurrentWine={this.handleCurrentWine}
-												/> }/>
-						<Route path="/winelist/:id" render={ () =>
-							<WineReviewPage handleSubmit={this.handleSubmitReview}
-															currentWine={this.state.currentWine}
-															wines={this.state.wines} /> } />
+												handleChange={this.handleSearchInput} /> } />
+						<Route path="/winelist/:id" component={WineReviewPage}/>
 					</div>
 				</div>
 			</Router>
