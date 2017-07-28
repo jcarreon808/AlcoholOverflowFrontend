@@ -8,11 +8,12 @@ class WineReviewPage extends Component {
 
   state = {
     content: '',
+    user_rating: 0,
     currentWine: []
   }
 
-  handleContentChange = (event) => (
-    this.setState({ content: event.target.value })
+  handleChange = (event) => (
+    this.setState({ [event.target.id]: event.target.value })
   )
 
   handleSubmitReview = (event) => {
@@ -23,10 +24,12 @@ class WineReviewPage extends Component {
   		body: JSON.stringify({
   			user_id: 1,
   			wine_id: this.props.match.params.id,
-  			content: this.state.content
+  			content: this.state.content,
+        user_rating: this.state.user_rating
   		})
   	})
     .then(() => {
+      document.getElementById('username').value = ""
       document.getElementById('content').value = ""
       this.fetchData()
     })
@@ -56,7 +59,7 @@ class WineReviewPage extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <ReviewForm handleSubmit={this.handleSubmitReview} handleChange={this.handleContentChange}/>
+          <ReviewForm handleSubmit={this.handleSubmitReview} handleChange={this.handleChange} user_rating={this.state.user_rating} />
         </div>
       )
    }
