@@ -14,6 +14,7 @@ const ReviewForm = (props) => {
         <br/>
         <Rating rating={props.user_rating} maxRating={10} />
         <br/>
+        
         <Form.Field id='content'
                     control={TextArea}
                     label='Review'

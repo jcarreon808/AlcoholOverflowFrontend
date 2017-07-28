@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Wine from './Wine'
-import SearchBar from './SearchBar'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Input, Button, Card } from 'semantic-ui-react'
 
 export default class WineList extends Component {
 
@@ -10,7 +9,7 @@ export default class WineList extends Component {
        const regex = new RegExp(this.props.searchTerm, 'gi')
        for (let key in wine) {
          if (wine[key] !== null && key !== 'reviews') {
-           if (typeof wine[key] == 'string' ) {
+           if (typeof wine[key] === 'string' ) {
              return !!wine[key].match(regex)
            }
          }
@@ -19,7 +18,14 @@ export default class WineList extends Component {
 
       return(
         <div>
-					<SearchBar handleChange={this.props.handleChange} />
+          <Input icon='search' placeholder='Search...' onChange={this.props.handleChange} />
+          <Button.Group size='medium'>
+            <Button onClick={this.props.handleFilter} name='white' >White</Button>
+            <Button.Or />
+            <Button onClick={this.props.handleFilter} name='red' >Red</Button>
+            <Button.Or />
+            <Button onClick={this.props.handleFilter} name='all' >All</Button>
+          </Button.Group>
           <br/>
           <Grid columns={3} divided>
             <Grid.Row>
