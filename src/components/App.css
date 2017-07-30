@@ -1,0 +1,25 @@
+.App .main {
+    text-align: center;
+}
+
+.splash-page {
+     font-family: Avenir monospace;
+     background: url("bottle.jpg") no-repeat center center fixed;
+     text-align: center;
+     margin: 300px;
+     padding: 200px;
+ }
+
+.splash-page-header {
+    font-style: italic;
+    text-align: center;
+    font-size: 20%;
+    margin: 6%;
+    text-decoration-color: aqua;
+}
+
+.wine-col-detail {
+    text-align: left;
+    font-size: 18px;
+    font-family: Avenir monospace;
+}
