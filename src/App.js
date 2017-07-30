@@ -4,6 +4,18 @@ import './App.css';
 
 class App extends Component {
 
+  // componentDidMount(){
+  //   fetch('http://api.snooth.com/wines/?akey=y7kdc8dmttig2p1owcnjzj14a0vtt921cuwj1hwmpze9hx39&n=100')
+  //   .then(res => res.json())
+  //   .then(data =>
+  //     fetch('http://localhost:3000/api/v1/wines', {
+  //       method: 'POST',
+  //       headers: {'Content-Type': 'application/json'},
+  //       body: JSON.stringify(data),
+  //     })
+  //   )
+  // }
+  
   render() {
     return (
       <div className="App">
