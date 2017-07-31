@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import SplashPage from './SplashPage'
 import WineList from './WineList'
 import Homepage from './Homepage'
-import SearchBar from './SearchBar'
 import WineReviewPage from './WineReviewPage'
 import NavBar from './NavBar'
 
