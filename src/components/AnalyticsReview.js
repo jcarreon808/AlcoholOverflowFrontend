@@ -13,9 +13,9 @@ const AnalyticsReview = ({review}) => {
         <Feed.Content>
           {review.user.username} reviewed: {review.wine.name}
           <br></br>
-          {review.content}
+					{review.user.username} rated this wine : {review.user_rating} out of 10
           <br></br>
-          {review.user.username} rated this wine : {review.user_rating} out of 10
+					{review.content}
         </Feed.Content>
       </Feed.Event>
     </Feed>

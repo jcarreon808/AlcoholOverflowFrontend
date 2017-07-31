@@ -1,13 +1,30 @@
+.winelist {
+    background-image: url("./vine-field1.jpg");
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.homepage {
+    background-image: url("./vine-field1.jpg");
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .splash {
     width: 100%;
     height: 100%;
-    background-image: url(./vine-field1.jpg);
     background-size: cover;
     position: fixed;
     background-position: center;
     background-repeat: no-repeat;
     border: 15px solid mintcream;
- }
+}
 
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
@@ -47,3 +64,4 @@
     font-size: 18px;
     font-family: Avenir monospace;
 }
+
