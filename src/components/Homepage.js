@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Grid, Image, Feed } from 'semantic-ui-react'
 import Analytics from './Analytics'
 import AnalyticsReview from './AnalyticsReview'
+
 class Homepage extends Component {
 
   state = {
@@ -30,7 +31,8 @@ class Homepage extends Component {
           <Grid.Row columns='equal'>
             <Grid.Column columns={3}>
               <Analytics getMostReviewed={this.props.getMostReviewed}
-                        getAverageRating={this.props.getAverageRating} />
+                        getAverageRating={this.props.getAverageRating}
+                        wines={this.props.wines} />
             </Grid.Column>
           </Grid.Row>
 						<Grid.Row>

@@ -3,7 +3,7 @@ import { Image, Grid, Card, Feed } from 'semantic-ui-react'
 
 const WineCardReviewPage = ({ currentWine }) => {
   return(
-    <div>
+    <div className='wine-review'>
     <Card>
       <Card.Content>
         <Card.Header>

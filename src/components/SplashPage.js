@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const SplashPage = () => {
 		return(
 			<div className="splash">
-				<Link to="/homepage">
+				<Link to="/home">
 					<div className="splash-page">
 						<h2 className="splash-page-header">Wine Overflow</h2>
 					</div>

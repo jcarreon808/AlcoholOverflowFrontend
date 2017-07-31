@@ -155,7 +155,8 @@ class App extends Component {
 					<div className="main">
 						<Route path="/home" render={() =>
 							<Homepage getAverageRating={this.getAverageRating}
-												getMostReviewed={this.getMostReviewed}/>}/>
+												getMostReviewed={this.getMostReviewed}
+												wines={this.state.wines} />}/>
 						<Route exact path="/winelist" render={() =>
 							<WineList wines={this.state.wines}
 												searchTerm={this.state.searchTerm}
