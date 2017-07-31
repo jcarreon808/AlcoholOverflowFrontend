@@ -1,11 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Card, Icon, Image, Grid, Button } from 'semantic-ui-react'
+import { Card, Icon, Image, Grid, Button, Label } from 'semantic-ui-react'
 
 const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes }) => {
 
 	return(
-		<Grid.Column>
+		<Grid.Column textAlign='center' width={5}>
 			<Card key={wineDetail.id}>
 		    <Image src={`${wineDetail.image}`} size='small' centered />
 		    <Card.Content>
@@ -25,14 +25,15 @@ const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes })
 		      </Card.Description>
 		    </Card.Content>
 		    <Card.Content extra>
-				User Votes: {wineDetail.user_vote === null ? 0 : wineDetail.user_vote}
+				<Label as='a' basic color='blue'>User Votes: {wineDetail.user_vote === null ? 0 : wineDetail.user_vote}</Label>
 				<br></br>
-				<Button onClick={() => handleUpVotes(wineDetail.id)} icon>
+				<Button inverted color='green' onClick={() => handleUpVotes(wineDetail.id)} icon>
 				 <Icon name='thumbs outline up' />
 				</Button>
-				<Button onClick={() => handleDownVotes(wineDetail.id)} icon>
+				<Button inverted color='red' onClick={() => handleDownVotes(wineDetail.id)} icon>
 				 <Icon name='thumbs outline down' />
 				</Button>
+					<br></br>
 					<br></br>
 					<Link to={`/winelist/${wineDetail.id}`}>See Reviews</Link><br/>
 					<a href={wineDetail.link} target="_blank">More Info</a>

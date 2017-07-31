@@ -24,17 +24,15 @@ class Homepage extends Component {
      const review = this.state.currentReviews.map(review => <AnalyticsReview review={review} /> )
 
       return(
-      	<div className="homepage">
-					<Grid celled>
-						<Grid.Row>
-							<Grid.Column width={3}>
-								Data
-							</Grid.Column>
-							<Grid.Column width={13}>
-								<Analytics compareReviews={this.compareReviews} currentReviews={this.state.currentReviews}/>
-							</Grid.Column>
-						</Grid.Row>
 
+      	<div className="homepage">
+        <Grid celled>
+          <Grid.Row columns='equal'>
+            <Grid.Column columns={3}>
+              <Analytics getMostReviewed={this.props.getMostReviewed}
+                        getAverageRating={this.props.getAverageRating} />
+            </Grid.Column>
+          </Grid.Row>
 						<Grid.Row>
 							<Grid.Column width={16}>
 								<h1>Recent Reviews</h1>

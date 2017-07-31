@@ -1,51 +1,36 @@
 import React, { Component } from 'react'
+
 import {Grid} from 'semantic-ui-react'
 class Analytics extends Component {
 	constructor(props){
 		super(props)
 	}
 
+
   render() {
-		 const topFive = this.props.compareReviews().reverse()
-
-		const topFiveMapped = topFive.map( (review)=> {
-			return ( <Grid.Row key={review.id}> {review.wine.name} ({review.user_rating}) </Grid.Row>)
-		})
-
-		const topFiveWhite = topFive.map( review => {
-			console.log(review)
-			if(review.wine.wine_type === 'White Wine') {
-				return (<Grid.Row key={review.id}> {review.wine.name} ({review.user_rating}) </Grid.Row>)
-			}
-		})
-
-		const topFiveRed = topFive.map( review => {
-			console.log(review)
-			if(review.wine.wine_type === 'Red Wine') {
-				return (<Grid.Row key={review.id}> {review.wine.name} ({review.user_rating}) </Grid.Row>)
-			}
-		})
+    const orderedRating = this.props.getAverageRating().sort((a,b) =>{
+      return b.average - a.average
+    }).slice(0, 5)
 
     return(
-      <div className="analytics-grid">
-				<Grid columns='three' divided>
-					<Grid.Row>
-						<Grid.Column>
-							<h1>Top Five</h1>
-							{topFiveMapped}
-						</Grid.Column>
-						<Grid.Column>
-							<h1>Top White</h1>
-							{topFiveWhite}
-						</Grid.Column>
-						<Grid.Column>
-							<h1>Top Red</h1>
-							{topFiveRed}
-						</Grid.Column>
-					</Grid.Row>
-				</Grid>
+      <Grid columns={3} divided>
+          <Grid.Row>
+              <Grid.Column>
+                  <h3>Top Five</h3>
+                  <ul>
+                    {orderedRating.map(e => <li> {e.name} </li>)}
+                  </ul>
+              </Grid.Column>
+              <Grid.Column>
+                  <h3>Most Reviewed</h3>
 
-			</div>
+              </Grid.Column>
+              <Grid.Column>
+                  <h3>Wine of the week</h3>
+
+              </Grid.Column>
+          </Grid.Row>
+      </Grid>
     )
   }
 }

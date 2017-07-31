@@ -1,3 +1,7 @@
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
+
 .winelist {
     background-image: url("./vine-field1.jpg");
     height: 100%;
@@ -26,10 +30,6 @@
     border: 15px solid mintcream;
 }
 
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
-
 .splash-page-header {
     position: fixed;
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -57,7 +57,6 @@
     -moz-animation-delay: 0.7s;
     animation-delay: 0.7s;
 }
-
 
 .wine-col-detail {
     text-align: left;

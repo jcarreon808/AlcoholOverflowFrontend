@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import SplashPage from './SplashPage'
 import WineList from './WineList'
 import Homepage from './Homepage'
-import SearchBar from './SearchBar'
 import WineReviewPage from './WineReviewPage'
 import NavBar from './NavBar'
 
@@ -32,20 +31,20 @@ class App extends Component {
 // 			)
 // 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		this.fetchData()
 	}
 
 	fetchData = () => {
 		fetch('http://localhost:3000/api/v1/wines')
-		.then(resp => resp.json())
-		.then(wines => {
-			const sortedWines = [...wines]
-			sortedWines.sort((a,b) =>{
-				return b.user_vote - a.user_vote
+			.then(resp => resp.json())
+			.then(wines => {
+				const sortedWines = [...wines]
+				sortedWines.sort((a, b) => {
+					return b.user_vote - a.user_vote
+				})
+				this.setState({wines: sortedWines})
 			})
-			this.setState({wines:sortedWines})
-		})
 	}
 
 	// fetch('http://localhost:3000/api/v1/wines')
@@ -53,7 +52,7 @@ class App extends Component {
 	// 	.then(wines => this.setState({ wines }))
 
 	handleSearchInput = (event) => {
-		this.setState({ searchTerm: event.target.value })
+		this.setState({searchTerm: event.target.value})
 	}
 
 	handleFilter = (event) => {
@@ -62,86 +61,118 @@ class App extends Component {
 			fetch('http://localhost:3000/api/v1/wines')
 				.then(resp => resp.json())
 				.then((wines) => {
-					const white = wines.filter(wine => wine.wine_type === 'White Wine')
-					this.setState({ wines: white })
+					const white = wines.filter(wine => wine.wine_type === 'White Wine').sort((a, b) => {
+						return b.user_vote - a.user_vote
+					})
+					this.setState({wines: white})
 				})
 		} else if (name === 'red') {
 			fetch('http://localhost:3000/api/v1/wines')
 				.then(resp => resp.json())
 				.then((wines) => {
-					const red = wines.filter(wine => wine.wine_type === 'Red Wine')
-				this.setState({ wines: red })
+					const red = wines.filter(wine => wine.wine_type === 'Red Wine').sort((a, b) => {
+						return b.user_vote - a.user_vote
+					})
+					this.setState({wines: red})
 				})
 		} else if (name === 'all') {
-			fetch('http://localhost:3000/api/v1/wines')
-				.then(resp => resp.json())
-				.then(wines => this.setState({ wines }))
-			}
+			this.fetchData()
+		}
 	}
 
 	handleUpVotes = (id) => {
 		fetch(`http://localhost:3000/api/v1/wines/${id}`)
-		.then(res=>res.json())
-		.then(data=>{
-			fetch(`http://localhost:3000/api/v1/wines/${id}`, {
-				method: 'PUT',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					user_vote: data.user_vote+1
+			.then(res => res.json())
+			.then(data => {
+				fetch(`http://localhost:3000/api/v1/wines/${id}`, {
+					method: 'PUT',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						user_vote: data.user_vote + 1
+					})
 				})
+					.then(() => {
+						this.fetchData()
+					})
 			})
-			.then(() => {
-				this.fetchData()
-			})
-		})
 	}
 
-	handleDownVotes = (id ) => {
+	handleDownVotes = (id) => {
 		fetch(`http://localhost:3000/api/v1/wines/${id}`)
-		.then(res=>res.json())
-		.then(data=>{
-			fetch(`http://localhost:3000/api/v1/wines/${id}`, {
-				method: 'PUT',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					user_vote: data.user_vote-1
+			.then(res => res.json())
+			.then(data => {
+				fetch(`http://localhost:3000/api/v1/wines/${id}`, {
+					method: 'PUT',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						user_vote: data.user_vote - 1
+					})
 				})
+					.then(() => {
+						this.fetchData()
+					})
 			})
-			.then(() => {
-				this.fetchData()
-			})
-		})
 	}
 
-  render() {
-    return (
+	getAverageRating = () => {
+		let data = this.state.wines
+		let newAry = []
+		for (let i = 0; i < data.length; i++) {
+			for (let key in data[i]) {
+				let newObj = {}
+				if (key === 'name') {
+					newObj[key] = data[i][key]
+					let total = 0
+					for (let k = 0; k < data[i].reviews.length; k++) {
+						total += data[i].reviews[k].user_rating
+						newObj['average'] = total / data[i].reviews.length
+						newAry.push(newObj)
+					}
+				}
+			}
+		}
+		return newAry
+	}
+
+	getMostReviewed = () => {
+		let data = [...this.state.wines]
+		data.sort((a, b) => {
+			return b.reviews.length - a.reviews.length
+		})
+		return data
+	}
+
+	render() {
+		return (
 			<Router>
-					<div className="App">
-						<NavBar />
-						<div>
-							<Route exact path="/" component={SplashPage} />
-						</div>
-						<div className="main">
-							<Route path="/home" component={Homepage} />
-							<Route exact path="/winelist" render={ () =>
-								<WineList wines={this.state.wines}
-													searchTerm={this.state.searchTerm}
-													handleChange={this.handleSearchInput}
-													handleFilter={this.handleFilter}
-													handleUpVotes={this.handleUpVotes}
-													handleDownVotes={this.handleDownVotes}/> } />
-							<Route path="/winelist/:id" component={WineReviewPage}/>
-						</div>
+				<div className="App">
+					<NavBar/>
+					<div>
+						<Route exact path="/" component={SplashPage}/>
 					</div>
+					<div className="main">
+						<Route path="/home" render={() =>
+							<Homepage getAverageRating={this.getAverageRating}
+												getMostReviewed={this.getMostReviewed}/>}/>
+						<Route exact path="/winelist" render={() =>
+							<WineList wines={this.state.wines}
+												searchTerm={this.state.searchTerm}
+												handleChange={this.handleSearchInput}
+												handleFilter={this.handleFilter}
+												handleUpVotes={this.handleUpVotes}
+												handleDownVotes={this.handleDownVotes}/>}/>
+						<Route path="/winelist/:id" component={WineReviewPage}/>
+					</div>
+				</div>
 			</Router>
-    );
-  }
+		);
+	}
 }
 
 export default App
