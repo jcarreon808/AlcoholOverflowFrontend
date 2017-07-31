@@ -29,7 +29,7 @@ export default class WineList extends Component {
           <br/>
           <Grid columns={3} divided>
             <Grid.Row>
-					    {filteredWines.map( wine => <Wine wineDetail={wine} /> )}
+					    {filteredWines.map( wine => <Wine key={wine.id} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
             </Grid.Row>
           </Grid>
         </div>
