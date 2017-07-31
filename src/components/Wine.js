@@ -2,8 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { Card, Icon, Image, Grid, Button } from 'semantic-ui-react'
 
-const Wine = ({ wineDetail, handleCurrentWine }) => {
-	
+const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes }) => {
+
 	return(
 		<Grid.Column>
 			<Card key={wineDetail.id}>
@@ -27,10 +27,10 @@ const Wine = ({ wineDetail, handleCurrentWine }) => {
 		    <Card.Content extra>
 				User Votes: {wineDetail.user_vote === null ? 0 : wineDetail.user_vote}
 				<br></br>
-				<Button icon>
+				<Button onClick={() => handleUpVotes(wineDetail.id)} icon>
 				 <Icon name='thumbs outline up' />
 				</Button>
-				<Button icon>
+				<Button onClick={() => handleDownVotes(wineDetail.id)} icon>
 				 <Icon name='thumbs outline down' />
 				</Button>
 					<br></br>

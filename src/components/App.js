@@ -19,10 +19,21 @@ class App extends Component {
 		}
 	}
 
-	componentDidMount() {
+	componentDidMount () {
+		this.fetchData()
+	}
+
+	fetchData = () => {
 		fetch('http://localhost:3000/api/v1/wines')
-			.then(resp => resp.json())
-			.then(wines => this.setState({ wines }))
+		.then(resp => resp.json())
+		.then(wines => {
+			const sortedWines = [...wines]
+			sortedWines.sort((a,b) =>{
+				return b.user_vote - a.user_vote
+			})
+			this.setState({wines:sortedWines})
+		})
+
 	}
 
 	handleSearchInput = (event) => {
@@ -52,6 +63,46 @@ class App extends Component {
 			}
 	}
 
+	handleUpVotes = (id) => {
+		fetch(`http://localhost:3000/api/v1/wines/${id}`)
+		.then(res=>res.json())
+		.then(data=>{
+			fetch(`http://localhost:3000/api/v1/wines/${id}`, {
+				method: 'PUT',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					user_vote: data.user_vote+1
+				})
+			})
+			.then(() => {
+				this.fetchData()
+			})
+		})
+	}
+
+	handleDownVotes = (id ) => {
+		fetch(`http://localhost:3000/api/v1/wines/${id}`)
+		.then(res=>res.json())
+		.then(data=>{
+			fetch(`http://localhost:3000/api/v1/wines/${id}`, {
+				method: 'PUT',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					user_vote: data.user_vote-1
+				})
+			})
+			.then(() => {
+				this.fetchData()
+			})
+		})
+	}
+
   render() {
     return (
 			<Router>
@@ -66,7 +117,9 @@ class App extends Component {
 							<WineList wines={this.state.wines}
 												searchTerm={this.state.searchTerm}
 												handleChange={this.handleSearchInput}
-												handleFilter={this.handleFilter} /> } />
+												handleFilter={this.handleFilter}
+												handleUpVotes={this.handleUpVotes}
+												handleDownVotes={this.handleDownVotes}/> } />
 						<Route path="/winelist/:id" component={WineReviewPage}/>
 					</div>
 				</div>
