@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import SplashPage from './SplashPage'
 import WineList from './WineList'
 import Homepage from './Homepage'
-import SearchBar from './SearchBar'
 import WineReviewPage from './WineReviewPage'
 import NavBar from './NavBar'
 
@@ -46,20 +45,22 @@ class App extends Component {
 			fetch('http://localhost:3000/api/v1/wines')
 				.then(resp => resp.json())
 				.then((wines) => {
-					const white = wines.filter(wine => wine.wine_type === 'White Wine')
+					const white = wines.filter(wine => wine.wine_type === 'White Wine').sort((a,b) =>{
+						return b.user_vote - a.user_vote
+					})
 					this.setState({ wines: white })
 				})
 		} else if (name === 'red') {
 			fetch('http://localhost:3000/api/v1/wines')
 				.then(resp => resp.json())
 				.then((wines) => {
-					const red = wines.filter(wine => wine.wine_type === 'Red Wine')
+					const red = wines.filter(wine => wine.wine_type === 'Red Wine').sort((a,b) =>{
+						return b.user_vote - a.user_vote
+					})
 				this.setState({ wines: red })
 				})
 		} else if (name === 'all') {
-			fetch('http://localhost:3000/api/v1/wines')
-				.then(resp => resp.json())
-				.then(wines => this.setState({ wines }))
+			this.fetchData()
 			}
 	}
 
