@@ -108,17 +108,13 @@ class App extends Component {
 		let data = this.state.wines
 		let newAry = []
 		for (let i=0; i < data.length; i++) {
-			for (let key in data[i]) {
+			if (data[i].reviews.length > 0) {
 				let newObj = {}
-				if (key === 'name') {
-					newObj[key] = data[i][key]
-					let total = 0
-					for (let k=0; k<data[i].reviews.length; k++) {
-						total += data[i].reviews[k].user_rating
-						newObj['average'] = total/data[i].reviews.length
-						newAry.push(newObj)
-					}
-				}
+				newObj.name = data[i].name
+				let total = data[i].reviews.reduce((value, review) => {
+					return review.user_rating + value }, 0)
+				newObj.average = total/data[i].reviews.length
+				newAry.push(newObj)
 			}
 		}
 		return newAry
