@@ -20,10 +20,20 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		fetch('http://localhost:3000/api/v1/wines')
-			.then(resp => resp.json())
-			.then(wines => this.setState({ wines }))
+		//  fetch('http://api.snooth.com/wines/?akey=y7kdc8dmttig2p1owcnjzj14a0vtt921cuwj1hwmpze9hx39&n=100')
+		//   .then(res => res.json())
+		//   .then(data =>
+		//     fetch('http://localhost:3000/api/v1/wines', {
+		//       method: 'POST',
+		//       headers: {'Content-Type': 'application/json'},
+		//       body: JSON.stringify(data),
+		//     })
+		//   )
 	}
+
+	// fetch('http://localhost:3000/api/v1/wines')
+	// 	.then(resp => resp.json())
+	// 	.then(wines => this.setState({ wines }))
 
 	handleSearchInput = (event) => {
 		this.setState({ searchTerm: event.target.value })
@@ -56,7 +66,7 @@ class App extends Component {
     return (
 			<Router>
 				<div className="App">
-			 		<NavBar />
+			 		{/*<NavBar />*/}
 					<div>
 						<Route exact path="/" component={SplashPage} />
 					</div>
@@ -76,18 +86,3 @@ class App extends Component {
 }
 
 export default App
-
-
-
-
-	// fetch to seed database:
-	//   fetch('http://api.snooth.com/wines/?akey=y7kdc8dmttig2p1owcnjzj14a0vtt921cuwj1hwmpze9hx39&n=100')
-	//   .then(res => res.json())
-	//   .then(data =>
-	//     fetch('http://localhost:3000/api/v1/wines', {
-	//       method: 'POST',
-	//       headers: {'Content-Type': 'application/json'},
-	//       body: JSON.stringify(data),
-	//     })
-	//   )
-	// }
