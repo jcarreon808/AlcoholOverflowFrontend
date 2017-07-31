@@ -18,6 +18,7 @@ export default class WineList extends Component {
 
       return(
         <div>
+          <center>
           <Input class="ui top fixed menu" icon='search' placeholder='Search...' onChange={this.props.handleChange} />
           <Button.Group size='medium'>
             <Button inverted color='yellow' onClick={this.props.handleFilter} name='white' >White</Button>
@@ -26,17 +27,12 @@ export default class WineList extends Component {
             <Button.Or />
             <Button inverted color='blue' onClick={this.props.handleFilter} name='all' >All</Button>
           </Button.Group>
-<<<<<<< HEAD
-          <br/>
-          <Grid columns={3} divided>
-					  {filteredWines.map( wine => <Wine key={wine.id} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
-=======
+          </center>
           <Divider horizontal></Divider>
           <Grid container columns={3} divided='vertically'>
             <Grid.Row centered columns={3}>
 					    {filteredWines.map( wine => <Wine key={wine.id} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
             </Grid.Row>
->>>>>>> cd56c297a5596f1a62fa3aded8cbdee114e199b6
           </Grid>
         </div>
       )

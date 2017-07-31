@@ -26,12 +26,10 @@ class Homepage extends Component {
 
       return(
         <Grid celled>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              Data
-            </Grid.Column>
-            <Grid.Column width={13}>
-              <Analytics />
+          <Grid.Row columns='equal'>
+            <Grid.Column columns={3}>
+              <Analytics getMostReviewed={this.props.getMostReviewed}
+                        getAverageRating={this.props.getAverageRating} />
             </Grid.Column>
           </Grid.Row>
 

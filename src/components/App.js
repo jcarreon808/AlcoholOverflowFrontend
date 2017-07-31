@@ -104,6 +104,34 @@ class App extends Component {
 		})
 	}
 
+	getAverageRating = () => {
+		let data = this.state.wines
+		let newAry = []
+		for (let i=0; i < data.length; i++) {
+			for (let key in data[i]) {
+				let newObj = {}
+				if (key === 'name') {
+					newObj[key] = data[i][key]
+					let total = 0
+					for (let k=0; k<data[i].reviews.length; k++) {
+						total += data[i].reviews[k].user_rating
+						newObj['average'] = total/data[i].reviews.length
+						newAry.push(newObj)
+					}
+				}
+			}
+		}
+		return newAry
+	}
+
+	getMostReviewed = () => {
+		let data = [...this.state.wines]
+		data.sort((a,b) =>{
+			return b.reviews.length - a.reviews.length
+		})
+		return data
+	}
+
   render() {
     return (
 			<Router>
@@ -113,7 +141,9 @@ class App extends Component {
 						<Route exact path="/" component={SplashPage} />
 					</div>
 					<div className="main">
-						<Route path="/home" component={Homepage} />
+						<Route path="/home" render={ () =>
+							<Homepage getAverageRating={this.getAverageRating}
+							 					getMostReviewed={this.getMostReviewed} /> } />
 						<Route exact path="/winelist" render={ () =>
 							<WineList wines={this.state.wines}
 												searchTerm={this.state.searchTerm}
