@@ -28,9 +28,7 @@ export default class WineList extends Component {
           </Button.Group>
           <br/>
           <Grid columns={3} divided>
-            <Grid.Row>
-					    {filteredWines.map( wine => <Wine key={wine.id} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
-            </Grid.Row>
+					  {filteredWines.map( wine => <Wine key={wine.id} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
           </Grid>
         </div>
       )

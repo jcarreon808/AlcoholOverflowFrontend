@@ -26,3 +26,8 @@
     font-size: 18px;
     font-family: Avenir monospace;
 }
+
+/*.review-list {
+  height: 300px;
+  overflow: 'scroll';
+}*/

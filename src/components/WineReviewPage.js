@@ -49,6 +49,7 @@ class WineReviewPage extends Component {
 	render(){
       return(
         <div>
+        <div>
           <Grid divided='vertically'>
             <Grid.Row columns={2}>
               <Grid.Column>
@@ -59,7 +60,16 @@ class WineReviewPage extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <ReviewForm handleSubmit={this.handleSubmitReview} handleChange={this.handleChange} user_rating={this.state.user_rating} />
+          </div>
+          <div style={{ margin: '1em 10em' }}>
+            <Grid celled>
+            <Grid.Row centered columns={1}>
+              <Grid.Column width={10}>
+                <ReviewForm handleSubmit={this.handleSubmitReview} handleChange={this.handleChange} user_rating={this.state.user_rating} />
+              </Grid.Column>
+            </Grid.Row>
+            </Grid>
+          </div>
         </div>
       )
    }
