@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import { Grid } from 'semantic-ui-react'
 
+import {Grid} from 'semantic-ui-react'
 class Analytics extends Component {
+	constructor(props){
+		super(props)
+	}
+
 
   render() {
     console.log(this.props.getAverageRating())

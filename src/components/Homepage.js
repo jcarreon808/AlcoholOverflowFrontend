@@ -15,16 +15,17 @@ class Homepage extends Component {
     .then(data => this.setState({currentReviews:data}))
   }
 
+	compareReviews = () => {
+	 	const sortedRatings = [...this.state.currentReviews].sort((a,b) =>  a.user_rating - b.user_rating )
+			return sortedRatings
+	 }
+
    render(){
-     const review = this.state.currentReviews.map(review => {
-       return (
-         <AnalyticsReview
-            review={review}
-         />
-       )
-     })
+     const review = this.state.currentReviews.map(review => <AnalyticsReview review={review} /> )
 
       return(
+
+      	<div className="homepage">
         <Grid celled>
           <Grid.Row columns='equal'>
             <Grid.Column columns={3}>
@@ -32,13 +33,14 @@ class Homepage extends Component {
                         getAverageRating={this.props.getAverageRating} />
             </Grid.Column>
           </Grid.Row>
-
-          <Grid.Row>
-            <Grid.Column width={16}>
-              {review}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+						<Grid.Row>
+							<Grid.Column width={16}>
+								<h1>Recent Reviews</h1>
+								{review}
+							</Grid.Column>
+						</Grid.Row>
+					</Grid>
+				</div>
       )
    }
 }

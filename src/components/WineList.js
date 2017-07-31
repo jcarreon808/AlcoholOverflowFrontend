@@ -17,7 +17,7 @@ export default class WineList extends Component {
      })
 
       return(
-        <div>
+        <div className="winelist">
           <center>
           <Input class="ui top fixed menu" icon='search' placeholder='Search...' onChange={this.props.handleChange} />
           <Button.Group size='medium'>
