@@ -2,6 +2,16 @@
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:0.9; } }
 
+.wine-review {
+    background-image: url("./vine-field1.jpg");
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 4em;
+  }
+
 .winelist {
     background-image: url("./vine-field1.jpg");
     height: 100%;
@@ -9,6 +19,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: 3em;
 }
 
 .homepage {
@@ -18,6 +29,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: 3em;
 }
 
 .splash {

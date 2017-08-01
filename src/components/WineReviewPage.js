@@ -48,21 +48,23 @@ class WineReviewPage extends Component {
 
 	render(){
       return(
-      <Grid container divided='vertically'>
-        <Grid.Row stretched columns={2} verticalAlign='middle'>
-          <Grid.Column>
-            <WineCardReviewPage currentWine={this.state.currentWine} />
-          </Grid.Column>
-          <Grid.Column>
-            <ReviewList currentWine={this.state.currentWine} />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row centered columns={1}>
-          <Grid.Column width={10}>
-            <ReviewForm handleSubmit={this.handleSubmitReview} handleChange={this.handleChange} user_rating={this.state.user_rating} />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <div className='wine-review'>
+        <Grid container divided='vertically'>
+          <Grid.Row stretched columns={2} verticalAlign='middle'>
+            <Grid.Column>
+              <WineCardReviewPage currentWine={this.state.currentWine} />
+            </Grid.Column>
+            <Grid.Column>
+              <ReviewList currentWine={this.state.currentWine} />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row centered columns={1} style={{ background: 'rgba(245, 243, 243, 0.75)', margin: '2em 0' }}>
+            <Grid.Column width={10}>
+              <ReviewForm handleSubmit={this.handleSubmitReview} handleChange={this.handleChange} user_rating={this.state.user_rating} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
       )
    }
 }

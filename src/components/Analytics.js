@@ -17,7 +17,6 @@ class Analytics extends Component {
 
     const wineOfTheWeek = this.props.wines[Math.floor(Math.random()*this.props.wines.length)]
 
-    console.log(this.props.wines)
     return(
       <Grid columns={3} divided>
           <Grid.Row>
@@ -27,68 +26,59 @@ class Analytics extends Component {
                     {orderedRating.map(e => <li> {e.name} </li>)}
                   </ol>
               </Grid.Column>
+
               <Grid.Column>
                   <h3>Most Reviewed Wine</h3>
-
-                      {mostReviewed.map(e =>
-                        <Link to={`/winelist/${e.id}`}>
-                        <Card>
-                          <Card.Content>
-                          <Card.Header>
-                            <center>{e.name}</center>
-                          </Card.Header>
-                          <Feed>
-                            <Feed.Event>
-                            <Image src={`${e.image}`} size='medium'/>
-                              <Feed.Content>
-                                <Card.Description>
-                                  <p>
-                                  <b><i>Varietal:</i></b> {e.varietal}<br/>
-                                  <b><i>Region:</i></b> {e.region}<br/>
-                                  <b><i>Winery:</i></b> {e.winery}<br/>
-                                  <b><i>Type:</i></b> {e.wine_type}<br/>
-                                  </p>
-                                </Card.Description>
-                              </Feed.Content>
-                            </Feed.Event>
-                          </Feed>
-                          </Card.Content>
-                        </Card>
-                      </Link>
-                    )}
-
+                  {mostReviewed[0] ?
+                  <Grid>
+                  <Grid.Row>
+                    <Grid.Column>
+                      <center><h4><u>{mostReviewed[0].name}</u></h4></center>
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row columns={2}>
+                    <Grid.Column>
+                      <Link to={`/winelist/${mostReviewed[0].id}`}><Image src={`${mostReviewed[0].image}`} size='medium'/></Link>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <p>
+                      <b><i>Varietal:</i></b> {mostReviewed[0].varietal}<br/>
+                      <b><i>Region:</i></b> {mostReviewed[0].region}<br/>
+                      <b><i>Winery:</i></b> {mostReviewed[0].winery}<br/>
+                      <b><i>Type:</i></b> {mostReviewed[0].wine_type}<br/>
+                      </p>
+                    </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                  : null }
               </Grid.Column>
+
               <Grid.Column>
                   <h3>Wine of the day</h3>
-
                   {this.props.wines.length > 0 ?
-                  <Link to={`/winelist/${wineOfTheWeek.id}`}>
-                  <Card>
-                    <Card.Content>
-                    <Card.Header>
-                      <center>{wineOfTheWeek.name}</center>
-                    </Card.Header>
-                    <Feed>
-                      <Feed.Event>
-                      <Image src={`${wineOfTheWeek.image}`} size='medium'/>
-                        <Feed.Content>
-                          <Card.Description>
-                            <p>
-                            <b><i>Varietal:</i></b> {wineOfTheWeek.varietal}<br/>
-                            <b><i>Region:</i></b> {wineOfTheWeek.region}<br/>
-                            <b><i>Winery:</i></b> {wineOfTheWeek.winery}<br/>
-                            <b><i>Type:</i></b> {wineOfTheWeek.wine_type}<br/>
-                            </p>
-                          </Card.Description>
-                        </Feed.Content>
-                      </Feed.Event>
-                    </Feed>
-                    </Card.Content>
-                  </Card>
-                  </Link>
+                    <Grid>
+                    <Grid.Row>
+                      <Grid.Column>
+                        <center><h4><u>{wineOfTheWeek.name}</u></h4></center>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row columns={2}>
+                      <Grid.Column>
+                        <Link to={`/winelist/${wineOfTheWeek.id}`}><Image src={`${wineOfTheWeek.image}`} size='medium'/></Link>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <p>
+                        <b><i>Varietal:</i></b> {wineOfTheWeek.varietal}<br/>
+                        <b><i>Region:</i></b> {wineOfTheWeek.region}<br/>
+                        <b><i>Winery:</i></b> {wineOfTheWeek.winery}<br/>
+                        <b><i>Type:</i></b> {wineOfTheWeek.wine_type}<br/>
+                        </p>
+                      </Grid.Column>
+                      </Grid.Row>
+                    </Grid>
                    : null}
-
               </Grid.Column>
+              
           </Grid.Row>
       </Grid>
     )

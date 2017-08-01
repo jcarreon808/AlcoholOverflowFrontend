@@ -21,9 +21,9 @@ export default class WineList extends Component {
           <center>
           <Input icon='search' placeholder='Search...' onChange={this.props.handleChange} />
           <Button.Group size='medium'>
-            <Button inverted color='yellow' onClick={this.props.handleFilter} name='white' >White</Button>
+            <Button inverted color='standard' onClick={this.props.handleFilter} name='white' >White</Button>
             <Button.Or />
-            <Button inverted color='violet' onClick={this.props.handleFilter} name='red' >Red</Button>
+            <Button inverted color='red' onClick={this.props.handleFilter} name='red' >Red</Button>
             <Button.Or />
             <Button inverted color='blue' onClick={this.props.handleFilter} name='all' >All</Button>
           </Button.Group>

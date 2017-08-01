@@ -152,7 +152,7 @@ class App extends Component {
 		return (
 			<Router>
 				<div className="App">
-					<NavBar clearSearchBar={this.clearSearchBar}/>
+					<NavBar clearSearchBar={this.clearSearchBar} />
 					<div>
 						<Route exact path="/" component={SplashPage}/>
 					</div>

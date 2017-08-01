@@ -35,9 +35,10 @@ class Homepage extends Component {
                         wines={this.props.wines} />
             </Grid.Column>
           </Grid.Row>
-						<Grid.Row>
+						<Grid.Row style={{ background: 'rgba(245, 243, 243, 0.5)', padding: '2em 7em', margin: '2em 10em' }}>
 							<Grid.Column width={16}>
 								<h1>Recent Reviews</h1>
+                <br></br>
 								{review}
 							</Grid.Column>
 						</Grid.Row>
