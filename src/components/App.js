@@ -144,11 +144,15 @@ class App extends Component {
 		return data
 	}
 
+	clearSearchBar = () => {
+		this.setState({searchTerm:''})
+	}
+
 	render() {
 		return (
 			<Router>
 				<div className="App">
-					<NavBar/>
+					<NavBar clearSearchBar={this.clearSearchBar}/>
 					<div>
 						<Route exact path="/" component={SplashPage}/>
 					</div>

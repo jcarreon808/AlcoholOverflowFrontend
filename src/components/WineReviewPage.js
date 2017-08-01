@@ -57,7 +57,7 @@ class WineReviewPage extends Component {
             <ReviewList currentWine={this.state.currentWine} />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row celled centered columns={1}>
+        <Grid.Row centered columns={1}>
           <Grid.Column width={10}>
             <ReviewForm handleSubmit={this.handleSubmitReview} handleChange={this.handleChange} user_rating={this.state.user_rating} />
           </Grid.Column>
