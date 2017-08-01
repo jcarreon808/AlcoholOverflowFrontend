@@ -148,6 +148,27 @@ class App extends Component {
 		this.setState({searchTerm:''})
 	}
 
+	sortByPrice = () => {
+
+	}
+
+	handleSort = (value) => {
+		console.log(value)
+		let data = [...this.state.wines]
+		data.sort((a, b) => {
+			if (value === 'Price (high to low)') {
+					return b.price - a.price
+				} else if (value === 'Price (low to high)') {
+					return a.price - b.price
+				} else if (value === 'Vintage (oldest first)') {
+					return a.vintage - b.vintage
+				} else if (value === 'Vintage (newest first)') {
+					return b.vintage - a.vintage
+				} 
+		})
+		this.setState({ wines: data })
+	}
+
 	render() {
 		return (
 			<Router>
@@ -167,7 +188,8 @@ class App extends Component {
 												handleChange={this.handleSearchInput}
 												handleFilter={this.handleFilter}
 												handleUpVotes={this.handleUpVotes}
-												handleDownVotes={this.handleDownVotes}/>}/>
+												handleDownVotes={this.handleDownVotes}
+												handleSort={this.handleSort} />}/>
 						<Route path="/winelist/:id" component={WineReviewPage}/>
 					</div>
 				</div>

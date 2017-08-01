@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { Card, Icon, Image, Grid, Button, Label } from 'semantic-ui-react'
 
-const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes }) => {
+const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes, toggle, handleToggle }) => {
 
 	return(
 		<Grid.Column textAlign='center' width={5}>
@@ -17,12 +17,17 @@ const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes })
 		          Price: ${wineDetail.price}
 		        </span>
 		      </Card.Meta>
+					{toggle ?
 		      <Card.Description>
-		        Varietal: {wineDetail.varietal}<br/>
+						Varietal: {wineDetail.varietal}<br/>
+						Vintage: {wineDetail.vintage}<br/>
 						Region: {wineDetail.region}<br/>
 						Winery: {wineDetail.winery}<br/>
 						Type: {wineDetail.wine_type}<br/>
-		      </Card.Description>
+ 					 <Button basic color='black' onClick={handleToggle}>Hide details</Button>
+					 </Card.Description> :
+					 <Button basic color='black' onClick={handleToggle}>Show more</Button>
+				 }
 		    </Card.Content>
 		    <Card.Content extra>
 				<Label as='a' basic color='blue'>User Votes: {wineDetail.user_vote === null ? 0 : wineDetail.user_vote}</Label>

@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import Wine from './Wine'
-import { Grid, Input, Button, Card , Divider} from 'semantic-ui-react'
+import { Grid, Input, Button, Card , Divider, Select } from 'semantic-ui-react'
 
 export default class WineList extends Component {
+
+  state = {
+    toggle: false
+  }
+
+  handleToggle = () => {
+    this.setState({ toggle: !this.state.toggle})
+  }
 
    render(){
      let filteredWines = this.props.wines.filter(wine => {
@@ -16,6 +24,25 @@ export default class WineList extends Component {
        }
      })
 
+     let sortOptions = [
+       {
+         text: 'Price (low to high)',
+         value: 'Price (low to high)'
+       },
+       {
+         text: 'Price (high to low)',
+         value: 'Price (high to low)'
+       },
+       {
+         text: 'Vintage (newest first)',
+         value: 'Vintage (newest first)'
+       },
+       {
+         text: 'Vintage (oldest first)',
+         value: 'Vintage (oldest first)'
+       }
+     ]
+
       return(
         <div className="winelist">
           <center>
@@ -25,13 +52,14 @@ export default class WineList extends Component {
             <Button.Or />
             <Button inverted color='red' onClick={this.props.handleFilter} name='red' >Red</Button>
             <Button.Or />
-            <Button inverted color='blue' onClick={this.props.handleFilter} name='all' >All</Button>
+            <Button inverted color='instagram' onClick={this.props.handleFilter} name='all' >All</Button>
           </Button.Group>
+          <Select placeholder='Sort By' options={sortOptions} onChange={(e, {value}) => this.props.handleSort(value)} />
           </center>
           <Divider horizontal></Divider>
           <Grid container columns={3} divided='vertically'>
             <Grid.Row centered columns={3}>
-					    {filteredWines.map( wine => <Wine key={wine.id} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
+					    {filteredWines.map( wine => <Wine key={wine.id} toggle={this.state.toggle} handleToggle={this.handleToggle} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
             </Grid.Row>
           </Grid>
         </div>
