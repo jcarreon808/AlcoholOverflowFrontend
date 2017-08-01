@@ -3,7 +3,6 @@ import { Feed } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 const AnalyticsReview = ({ review }) => {
-
   return(
     <Feed>
       <Feed.Event>

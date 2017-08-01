@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import { Card, Icon, Image, Grid, Button, Label } from 'semantic-ui-react'
 
 const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes, toggle, handleToggle }) => {
-
 	return(
 			<Card className='wine-col-detail' key={wineDetail.id} centered='true'>
 		    <Image src={`${wineDetail.image}`} size='small' centered />

@@ -3,7 +3,6 @@ import Wine from './Wine'
 import { Grid, Input, Button, Card , Divider, Select } from 'semantic-ui-react'
 
 export default class WineList extends Component {
-
   state = {
     toggle: false
   }

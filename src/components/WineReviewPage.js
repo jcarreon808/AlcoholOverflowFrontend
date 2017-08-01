@@ -5,7 +5,6 @@ import WineCardReviewPage from './WineCardReviewPage'
 import { Grid } from 'semantic-ui-react'
 
 class WineReviewPage extends Component {
-
   state = {
     content: '',
     user_rating: 0,

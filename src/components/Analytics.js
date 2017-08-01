@@ -1,21 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Grid, Image, Card, Feed } from 'semantic-ui-react'
 
-class Analytics extends Component {
-	constructor(props){
-		super(props)
-	}
-
-
-  render() {
-    const orderedRating = this.props.getAverageRating().sort((a,b) =>{
+const Analytics = (props) => {
+    const orderedRating = props.getAverageRating().sort((a,b) =>{
       return b.average - a.average
     }).slice(0, 5)
 
-    const mostReviewed = this.props.getMostReviewed().slice(0,1)
+    const mostReviewed = props.getMostReviewed().slice(0,1)
 
-    const wineOfTheWeek = this.props.wines[Math.floor(Math.random()*this.props.wines.length)]
+    const wineOfTheWeek = props.wines[Math.floor(Math.random()*props.wines.length)]
 
     return(
       <Grid columns={3} divided>
@@ -55,7 +49,7 @@ class Analytics extends Component {
 
               <Grid.Column>
                   <h3>Wine of the day</h3>
-                  {this.props.wines.length > 0 ?
+                  {props.wines.length > 0 ?
                     <Grid>
                     <Grid.Row>
                       <Grid.Column>
@@ -78,11 +72,9 @@ class Analytics extends Component {
                     </Grid>
                    : null}
               </Grid.Column>
-              
           </Grid.Row>
       </Grid>
     )
   }
-}
 
 export default Analytics
