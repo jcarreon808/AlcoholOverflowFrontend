@@ -57,11 +57,10 @@ export default class WineList extends Component {
           <Select placeholder='Sort By' options={sortOptions} onChange={(e, {value}) => this.props.handleSort(value)} />
           </center>
           <Divider horizontal></Divider>
-          <Grid container columns={3} divided='vertically'>
-            <Grid.Row centered columns={3}>
-					    {filteredWines.map( wine => <Wine key={wine.id} toggle={this.state.toggle} handleToggle={this.handleToggle} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
-            </Grid.Row>
-          </Grid>
+              <Card.Group centered='true' textAlign='center'>
+					       {filteredWines.map( wine => <Wine key={wine.id} toggle={this.state.toggle} handleToggle={this.handleToggle} wineDetail={wine} handleUpVotes={this.props.handleUpVotes} handleDownVotes={this.props.handleDownVotes}/> )}
+              </Card.Group>
+
         </div>
       )
    }

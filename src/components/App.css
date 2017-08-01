@@ -72,7 +72,5 @@
 }
 
 .wine-col-detail {
-    text-align: left;
-    font-size: 18px;
-    font-family: Avenir monospace;
+    text-align: center;
 }

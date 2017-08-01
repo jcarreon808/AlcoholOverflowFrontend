@@ -8,7 +8,6 @@ const NavBar = ({ clearSearchBar }) => {
       <Menu.Item header>Wine Overflow</Menu.Item>
       <Link to='/home' >  <Menu.Item name="home">Home</Menu.Item></Link>
       <Link to='/winelist' onClick={clearSearchBar}><Menu.Item name='wine list'  /></Link>
-      <Link to='/login' ><Menu.Item name='login'  /></Link>
 
     </Menu>
   )

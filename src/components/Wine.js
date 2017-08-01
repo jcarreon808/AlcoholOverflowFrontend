@@ -5,8 +5,7 @@ import { Card, Icon, Image, Grid, Button, Label } from 'semantic-ui-react'
 const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes, toggle, handleToggle }) => {
 
 	return(
-		<Grid.Column textAlign='center' width={5}>
-			<Card key={wineDetail.id}>
+			<Card className='wine-col-detail' key={wineDetail.id} centered='true'>
 		    <Image src={`${wineDetail.image}`} size='small' centered />
 		    <Card.Content>
 		      <Card.Header>
@@ -44,7 +43,6 @@ const Wine = ({ wineDetail, handleCurrentWine, handleUpVotes, handleDownVotes, t
 					<a href={wineDetail.link} target="_blank">More Info</a>
 		    </Card.Content>
 		  </Card>
-		</Grid.Column>
 	)
 }
 
